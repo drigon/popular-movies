@@ -7,7 +7,9 @@
         x-ref="search"
         @keydown.window="
             if (event.keyCode === 111 || event.keyCode === 193) {
-                event.preventDefault();
+                if ($refs.search !== document.activeElement) {
+                    event.preventDefault();
+                }
                 $refs.search.focus();
             }
         "
