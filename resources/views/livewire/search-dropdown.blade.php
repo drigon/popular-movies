@@ -4,7 +4,15 @@
         type="text"
         class="bg-gray-800 rounded-full text-sm w-64 px-4 pl-9 py-1 focus:outline-none focus:shadow-outline"
         placeholder="Search"
+        x-ref="search"
+        @keydown.window="
+            if (event.keyCode === 111 || event.keyCode === 193) {
+                event.preventDefault();
+                $refs.search.focus();
+            }
+        "
         @focus="isOpen = true"
+        @keydown="isOpen = true"
         @keydown.escape.window="isOpen = false"
         @keydown.shift.tab="isOpen = false"
     >
@@ -17,7 +25,7 @@
     @if (strlen($search) > 2)
     <div
         class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4"
-        x-show="isOpen"
+        x-show.transition.opacity="isOpen"
     >
 
             @if ($searchResults->count() > 0)
