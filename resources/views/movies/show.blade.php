@@ -3,7 +3,7 @@
 @section('content')
     <div class="movie-info border-b border-gray-800 ">
         <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row">
-            <img src="{{ $movie['poster_path'] }}" alt="Filme1" class="w-64 md:w-96 mx-auto">
+                <img src="{{ $movie['poster_path'] }}" alt="Filme1" class="w-64 md:w-96 mx-auto">
             <div class="md:ml-24">
                 <h2 class="text-4xl font-semibold">{{ $movie['title'] }}</h2>
                 <div class="flex flex-wrap items-center text-gray-400 text-sm">
@@ -77,11 +77,11 @@
 
                 @foreach ($movie['cast'] as $cast)
                     <div class="mt-8">
-                        <a href="#">
+                        <a href="{{ route('actors.show', $cast['id']) }}">
                             <img src="{{ 'https://image.tmdb.org/t/p/w300/'.$cast['profile_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="mt-2">
-                            <a href="#" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
+                            <a href="{{ route('actors.show', $cast['id']) }}" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
                             <p class="text-sm">{{ $cast['character'] }}</p>
                         </div>
                     </div>
