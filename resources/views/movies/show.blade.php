@@ -54,6 +54,7 @@
                                     <button
                                         @click="isOpen = false"
                                         @keydown.escape.window="isOpen = false"
+                                        @click.away="isOpen = false"
                                         class="text-3xl leading-none hover:text-gray-300">&times;
                                     </button>
                                 </div>
@@ -79,7 +80,7 @@
                 @foreach ($movie['cast'] as $cast)
                     <div class="mt-8">
                         <a href="{{ route('actors.show', $cast['id']) }}">
-                            <img src="{{ 'https://image.tmdb.org/t/p/w300/'.$cast['profile_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <img src="{{ $cast['profile_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="mt-2">
                             <a href="{{ route('actors.show', $cast['id']) }}" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
@@ -123,6 +124,7 @@
                         <div class="flex justify-end pr-4 pt-2">
                             <button
                                 @click="isOpen = false"
+                                @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                                 class="text-3xl leading-none hover:text-gray-300">&times;
                             </button>

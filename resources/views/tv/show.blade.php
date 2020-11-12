@@ -52,6 +52,7 @@
                                 <div class="flex justify-end pr-4 pt-2">
                                     <button
                                         @click="isOpen = false"
+                                        @click.away="isOpen = false"
                                         @keydown.escape.window="isOpen = false"
                                         class="text-3xl leading-none hover:text-gray-300">&times;
                                     </button>
@@ -77,17 +78,19 @@
             <h2 class="text-4xl font-semibold">Cast</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-16">
 
-                @foreach ($tvshow['cast'] as $cast)
+                @forelse ($tvshow['cast'] as $cast)
                     <div class="mt-8">
                         <a href="{{ route('actors.show', $cast['id']) }}">
-                            <img src="{{ 'https://image.tmdb.org/t/p/w300/'.$cast['profile_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
+                            <img src="{{ $cast['profile_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                         <div class="mt-2">
                             <a href="{{ route('actors.show', $cast['id']) }}" class="text-lg mt-2 hover:text-gray-300">{{ $cast['name'] }}</a>
                             <p class="text-sm">{{ $cast['character'] }}</p>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-green-300 font-semibold text-sm">No Images Available!</p>
+                @endforelse
 
             </div>
         </div>
@@ -98,7 +101,7 @@
             <h2 class="text-4xl font-semibold">Images</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-16 ">
 
-                @foreach ($tvshow['images'] as $image)
+                @forelse ($tvshow['images'] as $image)
                     <div class="mt-8">
                         <a
                             @click.prevent="
@@ -110,7 +113,9 @@
                             <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}" alt="Filme 1" class="hover:opacity-75 transition ease-in-out duration-150">
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-green-300 font-semibold text-sm">No Images Available!</p>
+                @endforelse
 
             </div>
 
@@ -124,6 +129,7 @@
                         <div class="flex justify-end pr-4 pt-2">
                             <button
                                 @click="isOpen = false"
+                                @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                                 class="text-3xl leading-none hover:text-gray-300">&times;
                             </button>
