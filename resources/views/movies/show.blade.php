@@ -41,7 +41,7 @@
                             <span class="ml-2">Play Trailer</span>
                         </button>
                     </div>
-                    @endif
+
 
                     <div
                         style="background-color: rgba(0,0,0,.5);"
@@ -65,6 +65,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
